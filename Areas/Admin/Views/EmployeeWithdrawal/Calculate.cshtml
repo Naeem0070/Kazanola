@@ -1,0 +1,131 @@
+﻿@model Kazanola.ViewModels.EmployeeWithdrawalViewModel
+@{
+    ViewData["Title"] = "Calculate";
+}
+
+<h1>Calculate</h1>
+<div class="col-md-6 d-flex align-items-center mb-3">
+    <label asp-for="EmployeeID" class="control-label"></label>
+    <div class="col-sm-8">
+        <select asp-for="EmployeeID" class="form-select select2"
+                asp-items="@(new SelectList(Model.EmployeeList, "EmployeeID", "EmployeeName"))">
+            <option value="">-- اختر --</option>
+        </select>
+        <span asp-validation-for="EmployeeID" class="text-danger"></span>
+    </div>
+</div>
+
+<div class="col-md-6 d-flex align-items-center mb-3">
+    <label class="col-sm-4 col-form-label bold">Start Date</label>
+    <div class="col-sm-8">
+        <input type="date" id="startDate" autofocus class="form-control" />
+
+    </div>
+</div>
+
+<div class="col-md-6 d-flex align-items-center mb-3">
+    <label class="col-sm-4 col-form-label bold">End Date</label>
+    <div class="col-sm-8">
+        <input type="date" id="endDate" autofocus class="form-control" />
+
+    </div>
+</div>
+<button class="btn btn-primary" id="calcTotal">احسب المجموع</button>
+
+<div>
+    المجموع: <span id="totalAmount"></span> دينار <br />
+
+</div>
+<section class="section ">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card shadow-sm pt-5">
+                <div class="card-body">
+                    <table class="table datatable  table-hover table-striped text-center table-bordered">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.WithdrawalAmount)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.WithdrawalDate)
+                                </th>
+                                 <th>
+                                    @Html.DisplayNameFor(model => model.Details)
+                                </th>
+
+
+
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="withdrawalTable">
+
+                            @foreach (var item in Model.EmployeeWithdrawalList)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.WithdrawalAmount)
+                                    </td>
+                                    
+                                    <td>@item.WithdrawalDate?.ToString("yyyy-MM-dd")</td>
+
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Details)
+                                    </td>
+
+                                    
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('.select2').select2({
+                placeholder: "-- اختر الموظف --",
+                allowClear: true
+            });
+
+            $('#calcTotal').click(function () {
+                let selectedEmp = $('#EmployeeID').val();
+                let start = new Date($('#startDate').val());
+                let end = new Date($('#endDate').val());
+                let totalWithdrawals = 0;
+
+                $('#withdrawalTable tr').each(function () {
+                    let empName = $(this).find('td:eq(0)').text().trim();
+                    let amountStr = $(this).find('td:eq(1)').text().trim();
+                    let dateStr = $(this).find('td:eq(2)').text().trim();
+
+                    let withdrawalDate = new Date(dateStr);
+                    let amount = parseFloat(amountStr);
+
+                    // فقط احسب إذا كان التاريخ ضمن المدى
+                    if (!isNaN(withdrawalDate) && !isNaN(amount) &&
+                        withdrawalDate >= start && withdrawalDate <= end) {
+
+                        // إذا ما اختار موظف، احسب الكل، أو تحقق من الاسم
+                        if (selectedEmp === "" || empName.includes($('#EmployeeID option:selected').text().trim())) {
+                            totalWithdrawals += amount;
+                        }
+                    }
+                });
+
+                $('#totalAmount').text(totalWithdrawals.toFixed(2));
+            });
+        });
+    </script>
+}

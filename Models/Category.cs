@@ -10,5 +10,7 @@ public partial class Category: BaseEntity
     [Required]
     [Display(Name = "الصنف")]
     public string? CategoryName { get; set; }
+    [Display(Name = "الصورة")]
+    public int? ImageUrl { get; set; }
 
 }

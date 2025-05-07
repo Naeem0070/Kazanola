@@ -2,8 +2,9 @@
 {
         public class BaseEntity
         {
+        public virtual int Id { get; set; }
 
-            public bool IsActive { get; set; }
+        public bool IsActive { get; set; }
             public bool IsDelete { get; set; }
 
             public string? CreateId { get; set; }

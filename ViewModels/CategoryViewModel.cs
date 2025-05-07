@@ -9,6 +9,11 @@ namespace Kazanola.ViewModels
         [Required]
         [Display(Name = "الصنف")]
         public string? CategoryName { get; set; }
+        [Display(Name = "الصورة")]
+        public int? ImageUrl { get; set; }
+        
+        [Display(Name ="ملف الصورة")]
+        public IFormFile? ImageFile { get; set; }
         public List<Category>? CategoryList { get; set; }
     }
 }

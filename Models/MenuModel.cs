@@ -1,11 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models
 {
-    public class MenuModel:BaseEntity
+    public class MenuModel: BaseEntity, IbaseEntity
     {
+        [Key]
         public int MenuModelId { get; set; }
-        public override int Id => MenuModelId;
+        [NotMapped]
+        public int Id => MenuModelId;
         [Required]
         [Display(Name = "اسم التبويب")]
         public string? MenuName { get; set; }

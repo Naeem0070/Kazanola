@@ -1,12 +1,19 @@
-﻿namespace Kazanola.Models
+﻿using Microsoft.CodeAnalysis;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Kazanola.Models
 {
-    public class PerfumeNoteRelatoin:BaseEntity
+    public class PerfumeNoteRelatoin: BaseEntity, IbaseEntity
     {
+        [Key]
         public int PerfumeNoteRelatoinId { get; set; }
-        public override int Id => PerfumeNoteRelatoinId;
+        [NotMapped]
+        public int Id => PerfumeNoteRelatoinId;
         public int PerfumeDetailsId { get; set; }
         public int NotesId { get; set; }
-        public string[]? NotePositoin { get; set; } = ["قاعدة", "القلب", "الافتتاحية"];
+        public int NotePositoinId { get; set; }
+        public  NotePositoin? NotePositoin { get; set; }
         public PerfumeDetails? PerfumeDetails { get; set; }
         public Notes? Notes { get; set; }
     }

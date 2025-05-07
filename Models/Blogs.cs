@@ -1,11 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models
 {
-    public class Blogs:BaseEntity
+    public class Blogs:BaseEntity,IbaseEntity
     {
+        [Key]
         public int BlogsId { get; set; }
-        public override int Id => BlogsId;
+        [NotMapped]
+        public int Id => BlogsId;
         [Required]
         [Display(Name = "العنوان")]
         public string? Title { get; set; }

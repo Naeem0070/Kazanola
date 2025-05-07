@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models;
 
-public partial class BillPayment : BaseEntity
+public partial class BillPayment : BaseEntity, IbaseEntity
 {
-    
 
     public int BillPaymentID { get; set; }
+    [NotMapped]
+    public int Id => BillPaymentID;
     [Required]
     [Display(Name ="رقم الفاتورة")]
     public int? BillID { get; set; }

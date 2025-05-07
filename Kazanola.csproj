@@ -8,6 +8,7 @@
 
 	<ItemGroup>
 	  <None Remove="Areas\Admin\Views\Page\Index.cshtml~RFf9ebfee.TMP" />
+	  <None Remove="Models\d4zi1sfu.nvw~" />
 	</ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.4" />

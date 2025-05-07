@@ -1,11 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models
 {
-    public class SaleBaner: BaseEntity
+    public class SaleBaner: BaseEntity, IbaseEntity
     {
+        [Key]
         public int SaleBanerId { get; set; }
-        public override int Id => SaleBanerId;
+        [NotMapped]
+        public int Id => SaleBanerId;
 
         [Required]
         [Display(Name="العنوان")]

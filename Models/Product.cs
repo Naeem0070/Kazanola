@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models;
 
-public partial class Product: BaseEntity
+public partial class Product: BaseEntity,IbaseEntity
 {
+    
     public int ProductID { get; set; }
+    [NotMapped]
+    public int Id => ProductID;
     [Required]
     [Display(Name = "اسم المنتج")]
     public string? ProductName { get; set; }

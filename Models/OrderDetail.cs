@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models;
 
-public partial class OrderDetail: BaseEntity
+public partial class OrderDetail: BaseEntity, IbaseEntity
 {
+   
     public int OrderDetailID { get; set; }
+    [NotMapped]
+    public int Id => OrderDetailID;
     [Required]
     [Display(Name = "رقم الطلب")]
     public int? OrderID { get; set; }

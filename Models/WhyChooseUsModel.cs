@@ -1,11 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models
 {
-    public class WhyChooseUsModel: BaseEntity
+    public class WhyChooseUsModel: BaseEntity,IbaseEntity
     {
+        [Key]
         public int WhyChooseUsId { get; set; }
-        public override int Id => WhyChooseUsId;
+        [NotMapped]
+        public int Id => WhyChooseUsId;
         [Required]
         [Display(Name = "العنوان")]
         public string? Title { get; set; }

@@ -1,11 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.CodeAnalysis;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models
 {
-    public class PerfumeDetails:BaseEntity
+    public class PerfumeDetails: BaseEntity, IbaseEntity
     {
+        [Key]
         public int PerfumeDetailsId { get; set; }
-        public override int Id => PerfumeDetailsId;
+        [NotMapped]
+        public int Id => PerfumeDetailsId;
         [Required]
         [Display(Name = "العطر")]
         public int ProductId { get; set; }

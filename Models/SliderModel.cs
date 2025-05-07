@@ -1,11 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models
 {
-    public class SliderModel:BaseEntity
+    public class SliderModel: BaseEntity, IbaseEntity
     {
+        [Key]
         public int SliderModelId { get; set; }
-        public override int Id => SliderModelId;
+        [NotMapped]
+        public int Id => SliderModelId;
         [Required]
         [Display(Name = "الصورة")]
         public string? ImageUrl { get; set; }

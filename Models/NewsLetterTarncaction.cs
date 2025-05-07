@@ -1,11 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models
 {
-    public class NewsLetterTarncaction:BaseEntity
+    public class NewsLetterTarncaction: BaseEntity, IbaseEntity
     {
+        [Key]
         public int NewsLetterTarncactionId { get; set; }
-        public override int Id => NewsLetterTarncactionId;
+        [NotMapped]
+        public int Id => NewsLetterTarncactionId;
         [Required]
         [Display(Name = "البريد الالكتروني")]
         public string? Email { get; set; }

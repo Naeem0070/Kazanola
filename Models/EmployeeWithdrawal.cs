@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models;
 
-public partial class EmployeeWithdrawal: BaseEntity
+public partial class EmployeeWithdrawal: BaseEntity, IbaseEntity
 {
+    
     public int EmployeeWithdrawalID { get; set; }
+    [NotMapped]
+    public int Id => EmployeeWithdrawalID;
     [Required]
     [Display(Name = "اسم الموظف")]
     public int? EmployeeID { get; set; }

@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models;
 
-public partial class Order: BaseEntity
+public partial class Order: BaseEntity, IbaseEntity
 {
+   
     public int OrderID { get; set; }
+    [NotMapped]
+    public int Id => OrderID;
     [Required]
     [Display(Name = "السعر الكلي")]
     public decimal? OrderTotalPrice { get; set; }

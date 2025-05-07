@@ -25,7 +25,7 @@ builder.Services.AddScoped<IRepository<Employee>, EmployeeRepository>();
 builder.Services.AddScoped<IRepository<EmployeeSchedule>, EmployeeScheduleRepository>();
 builder.Services.AddScoped<IRepository<EmployeeWithdrawal>, EmployeeWithdrawalRepository>();
 builder.Services.AddScoped<IRepository<CampaignPayment>, CampaignPaymentRepository>();
-
+builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
 
 builder.Services.AddDbContext<AppDbContext>(x =>

@@ -1,11 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models
 {
-    public class Terms_ConditionsModel : BaseEntity
+    public class Terms_ConditionsModel : BaseEntity,IbaseEntity
     {
+        [Key]
         public int Terms_ConditionsId { get; set; }
-        public override int Id => Terms_ConditionsId;
+        [NotMapped]
+        public int Id => Terms_ConditionsId;
         [Required]
         [Display(Name = "العنوان")]
         public string? Title { get; set; }

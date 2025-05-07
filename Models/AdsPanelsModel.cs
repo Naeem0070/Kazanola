@@ -1,11 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models
 {
-    public class AdsPanelsModel:BaseEntity
+    public class AdsPanelsModel: BaseEntity, IbaseEntity
     {
+        [Key]
         public int AdsPanelsModelId { get; set; }
-        public override int Id => AdsPanelsModelId;
+        [NotMapped]
+        public int Id => AdsPanelsModelId;
         [Required]
         [Display(Name = "العنوان")]
         public string? title { get; set; }

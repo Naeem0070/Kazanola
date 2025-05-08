@@ -1,0 +1,138 @@
+﻿@model Kazanola.ViewModels.CampaignPaymentViewModel
+
+@{
+    ViewData["Title"] = "Calculate";
+}
+
+<h1>Calculate</h1>
+
+
+<div class="col-md-6 d-flex align-items-center mb-3">
+    <label asp-for="PageID" class="control-label"></label>
+    <div class="col-sm-8">
+        <select id="pageFilter" asp-for="PageID" class="form-select select2"
+                asp-items="@(new SelectList(Model.PageList, "PageID", "PageName"))">
+            <option value="">-- اختر --</option>
+        </select>
+        <span asp-validation-for="PageID" class="text-danger"></span>
+    </div>
+</div>
+
+<div class="col-md-6 d-flex align-items-center mb-3">
+    <label class="col-sm-4 col-form-label bold">Start Date</label>
+    <div class="col-sm-8">
+        <input type="date" id="startDate" autofocus class="form-control" />
+
+    </div>
+</div>
+
+<div class="col-md-6 d-flex align-items-center mb-3">
+    <label class="col-sm-4 col-form-label bold">End Date</label>
+    <div class="col-sm-8">
+        <input type="date" id="endDate" autofocus class="form-control" />
+  
+    </div>
+</div>
+<button class="btn btn-primary" id="calcTotal">احسب المجموع</button>
+
+
+<div>المجموع: <span id="totalAmount"></span> دينار</div>
+
+<section class="section ">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card shadow-sm pt-5">
+            <div class="card-body">
+                    <table class="table  datatable  table-hover table-striped text-center table-bordered">
+                    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CampaignName)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Payment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Page.PageName)
+            </th>
+           
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="paymentsTable" >
+@foreach (var item in Model.CampaignPaymentList) {
+                                <tr data-pageid="@item.PageID">
+            <td>
+                @Html.DisplayFor(modelItem => item.CampaignName)
+            </td>
+            
+            <td>
+                                    @item.PaymentDate?.ToString("yyyy-MM-dd")
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Payment)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Page.PageName)
+            </td>
+            
+           @*  <td>
+                <a asp-action="Edit" asp-route-id="@item.CampaignPaymentID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CampaignPaymentID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CampaignPaymentID">Delete</a>
+            </td> *@
+        </tr>
+}
+    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+@section scripts 
+{
+<script>
+                  $('#calcTotal').click(function () {
+            let start = new Date($('#startDate').val());
+            let end = new Date($('#endDate').val());
+            let selectedPageId = $('#pageFilter').val(); // قيمة الصفحة المختارة
+            let total = 0;
+
+            $('#paymentsTable tr').each(function () {
+                let pageId = $(this).data('pageid').toString();
+                let dateStr = $(this).find('td:eq(1)').text().trim();
+                let amountStr = $(this).find('td:eq(2)').text().trim();
+
+                if (dateStr && amountStr) {
+                    let date = new Date(dateStr);
+                    let amount = parseFloat(amountStr);
+
+                    if (!isNaN(date) && !isNaN(amount) &&
+                        date >= start && date <= end &&
+                        (selectedPageId === "" || selectedPageId === pageId)) {
+                        total += amount;
+                    }
+                }
+            });
+
+            $('#totalAmount').text(total.toFixed(2));
+        });
+
+
+</script>
+    <script>
+        $(document).ready(function () {
+            $('.select2').select2({
+                placeholder: "-- اختر فاتورة --",
+                allowClear: true
+            });
+        });
+    </script>
+}

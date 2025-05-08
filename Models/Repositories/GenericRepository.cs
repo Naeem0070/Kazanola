@@ -67,7 +67,7 @@ namespace Kazanola.Models.Repositories
 
         public T Find(int id)
         {
-            return _dbSet.Find(id);
+            return _dbSet.SingleOrDefault(x => x.Id == id);
         }
     }
 }

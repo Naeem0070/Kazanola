@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Kazanola.Models.Repositories
 {
-    public class GenericRepository<T> : IRepository<T> where T : BaseEntity
+    public class GenericRepository<T> : IRepository<T> where T : BaseEntity,IbaseEntity
     {
         private readonly AppDbContext _db;
         private readonly DbSet<T> _dbSet;
@@ -67,7 +67,7 @@ namespace Kazanola.Models.Repositories
 
         public T Find(int id)
         {
-            return _dbSet.Find(id);
+            return _dbSet.SingleOrDefault(x => x.Id == id);
         }
     }
 }

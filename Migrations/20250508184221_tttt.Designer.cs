@@ -4,6 +4,7 @@ using Kazanola.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kazanola.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250508184221_tttt")]
+    partial class tttt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,7 +65,7 @@ namespace Kazanola.Migrations
 
                     b.HasKey("AdsPanelsModelId");
 
-                    b.ToTable("AdsPanels", (string)null);
+                    b.ToTable("AdsPanels");
                 });
 
             modelBuilder.Entity("Kazanola.Models.BillPayment", b =>
@@ -107,7 +110,7 @@ namespace Kazanola.Migrations
 
                     b.HasIndex("BillID");
 
-                    b.ToTable("BillPayments", (string)null);
+                    b.ToTable("BillPayments");
                 });
 
             modelBuilder.Entity("Kazanola.Models.Blogs", b =>
@@ -169,7 +172,7 @@ namespace Kazanola.Migrations
 
                     b.HasKey("BlogsId");
 
-                    b.ToTable("Blogs", (string)null);
+                    b.ToTable("Blogs");
                 });
 
             modelBuilder.Entity("Kazanola.Models.Brand", b =>
@@ -209,7 +212,7 @@ namespace Kazanola.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Brands", (string)null);
+                    b.ToTable("Brands");
                 });
 
             modelBuilder.Entity("Kazanola.Models.CampaignPayment", b =>
@@ -255,7 +258,7 @@ namespace Kazanola.Migrations
 
                     b.HasIndex("PageID");
 
-                    b.ToTable("Marketing", (string)null);
+                    b.ToTable("Marketing");
                 });
 
             modelBuilder.Entity("Kazanola.Models.Category", b =>
@@ -293,7 +296,7 @@ namespace Kazanola.Migrations
 
                     b.HasKey("CategoryID");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("Kazanola.Models.ContactUsForm", b =>
@@ -340,7 +343,7 @@ namespace Kazanola.Migrations
 
                     b.HasKey("ContactUsFormId");
 
-                    b.ToTable("contactUs", (string)null);
+                    b.ToTable("contactUs");
                 });
 
             modelBuilder.Entity("Kazanola.Models.Employee", b =>
@@ -381,7 +384,7 @@ namespace Kazanola.Migrations
 
                     b.HasKey("EmployeeID");
 
-                    b.ToTable("Employees", (string)null);
+                    b.ToTable("Employees");
                 });
 
             modelBuilder.Entity("Kazanola.Models.EmployeeSchedule", b =>
@@ -426,7 +429,7 @@ namespace Kazanola.Migrations
 
                     b.HasIndex("EmployeeID");
 
-                    b.ToTable("EmployeeSchedules", (string)null);
+                    b.ToTable("EmployeeSchedules");
                 });
 
             modelBuilder.Entity("Kazanola.Models.EmployeeWithdrawal", b =>
@@ -471,7 +474,7 @@ namespace Kazanola.Migrations
 
                     b.HasIndex("EmployeeID");
 
-                    b.ToTable("EmployeeWithdrawals", (string)null);
+                    b.ToTable("EmployeeWithdrawals");
                 });
 
             modelBuilder.Entity("Kazanola.Models.FAQModel", b =>
@@ -510,7 +513,7 @@ namespace Kazanola.Migrations
 
                     b.HasKey("FAQId");
 
-                    b.ToTable("FAQModels", (string)null);
+                    b.ToTable("FAQModels");
                 });
 
             modelBuilder.Entity("Kazanola.Models.FadeBack", b =>
@@ -557,7 +560,7 @@ namespace Kazanola.Migrations
 
                     b.HasKey("FadeBackId");
 
-                    b.ToTable("FadeBacks", (string)null);
+                    b.ToTable("FadeBacks");
                 });
 
             modelBuilder.Entity("Kazanola.Models.MenuModel", b =>
@@ -596,7 +599,7 @@ namespace Kazanola.Migrations
 
                     b.HasKey("MenuModelId");
 
-                    b.ToTable("MenuModels", (string)null);
+                    b.ToTable("MenuModels");
                 });
 
             modelBuilder.Entity("Kazanola.Models.MenuOfMenuModel", b =>
@@ -640,7 +643,7 @@ namespace Kazanola.Migrations
 
                     b.HasIndex("ParentMenuId");
 
-                    b.ToTable("MenuOfMenus", (string)null);
+                    b.ToTable("MenuOfMenus");
                 });
 
             modelBuilder.Entity("Kazanola.Models.NewsLetterTarncaction", b =>
@@ -681,7 +684,7 @@ namespace Kazanola.Migrations
 
                     b.HasKey("NewsLetterTarncactionId");
 
-                    b.ToTable("NewsLetters", (string)null);
+                    b.ToTable("NewsLetters");
                 });
 
             modelBuilder.Entity("Kazanola.Models.NotePositoin", b =>
@@ -715,7 +718,7 @@ namespace Kazanola.Migrations
 
                     b.HasKey("NotePositoinId");
 
-                    b.ToTable("NotePositoins", (string)null);
+                    b.ToTable("NotePositoins");
                 });
 
             modelBuilder.Entity("Kazanola.Models.Notes", b =>
@@ -754,7 +757,7 @@ namespace Kazanola.Migrations
 
                     b.HasKey("NotesId");
 
-                    b.ToTable("Notes", (string)null);
+                    b.ToTable("Notes");
                 });
 
             modelBuilder.Entity("Kazanola.Models.Order", b =>
@@ -822,7 +825,7 @@ namespace Kazanola.Migrations
 
                     b.HasIndex("PageID");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Kazanola.Models.OrderDetail", b =>
@@ -872,7 +875,7 @@ namespace Kazanola.Migrations
 
                     b.HasIndex("ProductID");
 
-                    b.ToTable("OrderDetails", (string)null);
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("Kazanola.Models.Page", b =>
@@ -910,7 +913,7 @@ namespace Kazanola.Migrations
 
                     b.HasKey("PageID");
 
-                    b.ToTable("Pages", (string)null);
+                    b.ToTable("Pages");
                 });
 
             modelBuilder.Entity("Kazanola.Models.PerfumeDetails", b =>
@@ -974,7 +977,7 @@ namespace Kazanola.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Perfumes", (string)null);
+                    b.ToTable("Perfumes");
                 });
 
             modelBuilder.Entity("Kazanola.Models.PerfumeNoteRelatoin", b =>
@@ -1020,7 +1023,7 @@ namespace Kazanola.Migrations
 
                     b.HasIndex("PerfumeDetailsId");
 
-                    b.ToTable("PerfumeNoteRelatoins", (string)null);
+                    b.ToTable("PerfumeNoteRelatoins");
                 });
 
             modelBuilder.Entity("Kazanola.Models.Product", b =>
@@ -1077,7 +1080,7 @@ namespace Kazanola.Migrations
 
                     b.HasIndex("BrandId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Kazanola.Models.ProductDetails", b =>
@@ -1141,7 +1144,7 @@ namespace Kazanola.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductDetails", (string)null);
+                    b.ToTable("ProductDetails");
                 });
 
             modelBuilder.Entity("Kazanola.Models.SaleBaner", b =>
@@ -1197,7 +1200,7 @@ namespace Kazanola.Migrations
 
                     b.HasKey("SaleBanerId");
 
-                    b.ToTable("SaleBaners", (string)null);
+                    b.ToTable("SaleBaners");
                 });
 
             modelBuilder.Entity("Kazanola.Models.ScheduleBill", b =>
@@ -1242,7 +1245,7 @@ namespace Kazanola.Migrations
 
                     b.HasKey("ScheduleBillID");
 
-                    b.ToTable("ScheduleBills", (string)null);
+                    b.ToTable("ScheduleBills");
                 });
 
             modelBuilder.Entity("Kazanola.Models.SliderModel", b =>
@@ -1289,7 +1292,7 @@ namespace Kazanola.Migrations
 
                     b.HasKey("SliderModelId");
 
-                    b.ToTable("Sliders", (string)null);
+                    b.ToTable("Sliders");
                 });
 
             modelBuilder.Entity("Kazanola.Models.SocialMediaModel", b =>
@@ -1332,7 +1335,7 @@ namespace Kazanola.Migrations
 
                     b.HasKey("SocialMediaId");
 
-                    b.ToTable("SocialMedias", (string)null);
+                    b.ToTable("SocialMedias");
                 });
 
             modelBuilder.Entity("Kazanola.Models.SystemSetting", b =>
@@ -1383,7 +1386,7 @@ namespace Kazanola.Migrations
 
                     b.HasKey("SystemSettingId");
 
-                    b.ToTable("SystemSettings", (string)null);
+                    b.ToTable("SystemSettings");
                 });
 
             modelBuilder.Entity("Kazanola.Models.Terms_ConditionsModel", b =>
@@ -1422,7 +1425,7 @@ namespace Kazanola.Migrations
 
                     b.HasKey("Terms_ConditionsId");
 
-                    b.ToTable("terms_Conditions", (string)null);
+                    b.ToTable("terms_Conditions");
                 });
 
             modelBuilder.Entity("Kazanola.Models.Users", b =>
@@ -1544,7 +1547,7 @@ namespace Kazanola.Migrations
 
                     b.HasKey("WhoWeAreId");
 
-                    b.ToTable("WhoWeAres", (string)null);
+                    b.ToTable("WhoWeAres");
                 });
 
             modelBuilder.Entity("Kazanola.Models.WhyChooseUsModel", b =>
@@ -1594,7 +1597,7 @@ namespace Kazanola.Migrations
 
                     b.HasKey("WhyChooseUsId");
 
-                    b.ToTable("WhyChooseUs", (string)null);
+                    b.ToTable("WhyChooseUs");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

@@ -3,12 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models
 {
-    public class FadeBack: BaseEntity, IbaseEntity
+    public class FadeBack: BaseEntity 
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int FadeBackId { get; set; }
         [NotMapped]
-        public int Id => FadeBackId;
+        public override int Id => FadeBackId;
         [Required]
         [Display(Name = "الصورة")]
         public string? ImageUrl { get; set; }

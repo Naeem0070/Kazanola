@@ -3,12 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models
 {
-    public class MenuOfMenuModel: BaseEntity, IbaseEntity
+    public class MenuOfMenuModel: BaseEntity
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MenuOfMenuModelId { get; set; }
         [NotMapped]
-        public int Id => MenuOfMenuModelId;
+        public override int Id => MenuOfMenuModelId;
         [Required]
         [Display(Name = "اسم التبويب")]
         public string? MenuName { get; set; }

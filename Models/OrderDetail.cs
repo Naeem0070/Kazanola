@@ -5,12 +5,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models;
 
-public partial class OrderDetail: BaseEntity, IbaseEntity
+public partial class OrderDetail: BaseEntity
 {
-   
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int OrderDetailID { get; set; }
     [NotMapped]
-    public int Id => OrderDetailID;
+    public override int Id => OrderDetailID;
     [Required]
     [Display(Name = "رقم الطلب")]
     public int? OrderID { get; set; }

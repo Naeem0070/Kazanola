@@ -5,13 +5,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models;
 
-public partial class ScheduleBill: BaseEntity,IbaseEntity
+public partial class ScheduleBill: BaseEntity
 {
-    [Required]
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Display(Name ="رقم")]
     public int ScheduleBillID { get; set; }
     [NotMapped]
-    public int Id => ScheduleBillID;
+    public override int Id => ScheduleBillID;
     [Required]
     [Display(Name = "رقم الفاتورة")]
     public String? BillNumber { get; set; }

@@ -3,12 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models
 {
-    public class NewsLetterTarncaction: BaseEntity, IbaseEntity
+    public class NewsLetterTarncaction: BaseEntity
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int NewsLetterTarncactionId { get; set; }
         [NotMapped]
-        public int Id => NewsLetterTarncactionId;
+        public override int Id => NewsLetterTarncactionId;
         [Required]
         [Display(Name = "البريد الالكتروني")]
         public string? Email { get; set; }

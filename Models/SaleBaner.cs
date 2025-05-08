@@ -3,12 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models
 {
-    public class SaleBaner: BaseEntity, IbaseEntity
+    public class SaleBaner: BaseEntity
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SaleBanerId { get; set; }
         [NotMapped]
-        public int Id => SaleBanerId;
+        public override int Id => SaleBanerId;
 
         [Required]
         [Display(Name="العنوان")]

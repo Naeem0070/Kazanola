@@ -3,12 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models
 {
-    public class SocialMediaModel: BaseEntity,IbaseEntity
+    public class SocialMediaModel: BaseEntity
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SocialMediaId { get; set; }
         [NotMapped]
-        public int Id => SocialMediaId;
+        public override int Id => SocialMediaId;
         [Required]
         [Display(Name = "اسم المنصة")]
         public string? PlatformName { get; set; }

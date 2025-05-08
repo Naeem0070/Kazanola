@@ -3,12 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models
 {
-    public class Terms_ConditionsModel : BaseEntity,IbaseEntity
+    public class Terms_ConditionsModel : BaseEntity
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Terms_ConditionsId { get; set; }
         [NotMapped]
-        public int Id => Terms_ConditionsId;
+        public  override int Id => Terms_ConditionsId;
         [Required]
         [Display(Name = "العنوان")]
         public string? Title { get; set; }

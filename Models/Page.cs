@@ -5,12 +5,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models;
 
-public partial class Page: BaseEntity,IbaseEntity
+public partial class Page: BaseEntity   
 {
-  
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int PageID { get; set; }
     [NotMapped]
-    public int Id => PageID;
+    public override int Id => PageID;
     [Required]
     [Display(Name = "اسم الصفحة")]
     public string? PageName { get; set; }

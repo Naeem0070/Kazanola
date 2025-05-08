@@ -3,12 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models
 {
-    public class AdsPanelsModel: BaseEntity, IbaseEntity
+    public class AdsPanelsModel: BaseEntity
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int AdsPanelsModelId { get; set; }
         [NotMapped]
-        public int Id => AdsPanelsModelId;
+        public override int Id => AdsPanelsModelId;
         [Required]
         [Display(Name = "العنوان")]
         public string? title { get; set; }

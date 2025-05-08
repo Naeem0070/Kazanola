@@ -5,12 +5,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models;
 
-public partial class Employee: BaseEntity, IbaseEntity
+public partial class Employee: BaseEntity
 {
-    
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int EmployeeID { get; set; }
     [NotMapped]
-    public int Id => EmployeeID;
+    public override int Id => EmployeeID;
     [Required]
     [Display(Name = "اسم الموظف")]
     public string? EmployeeName { get; set; }

@@ -6,12 +6,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models;
 
-public partial class BillPayment : BaseEntity, IbaseEntity
+public partial class BillPayment : BaseEntity
 {
-
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int BillPaymentID { get; set; }
     [NotMapped]
-    public int Id => BillPaymentID;
+    public override int Id => BillPaymentID;
     [Required]
     [Display(Name ="رقم الفاتورة")]
     public int? BillID { get; set; }

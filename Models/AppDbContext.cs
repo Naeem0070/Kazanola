@@ -21,6 +21,7 @@ namespace Kazanola.Models
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Page> Pages { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<ProductDetails> ProductDetails { get; set; }
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<ScheduleBill> ScheduleBills { get; set; }
         public DbSet<Users> User { get; set; } = default!;

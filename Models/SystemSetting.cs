@@ -3,12 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models
 {
-    public class SystemSetting: BaseEntity,IbaseEntity
+    public class SystemSetting: BaseEntity
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SystemSettingId { get; set; }
         [NotMapped]
-        public int Id => SystemSettingId;
+        public override int Id => SystemSettingId;
         [Required]
         [Display(Name = "Logo")]
         public string? LogoUrl { get; set; }

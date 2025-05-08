@@ -3,12 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models
 {
-    public class WhyChooseUsModel: BaseEntity,IbaseEntity
+    public class WhyChooseUsModel: BaseEntity
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int WhyChooseUsId { get; set; }
         [NotMapped]
-        public int Id => WhyChooseUsId;
+        public override int Id => WhyChooseUsId;
         [Required]
         [Display(Name = "العنوان")]
         public string? Title { get; set; }

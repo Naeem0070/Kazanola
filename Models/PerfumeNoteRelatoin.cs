@@ -4,12 +4,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models
 {
-    public class PerfumeNoteRelatoin: BaseEntity, IbaseEntity
+    public class PerfumeNoteRelatoin: BaseEntity
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PerfumeNoteRelatoinId { get; set; }
         [NotMapped]
-        public int Id => PerfumeNoteRelatoinId;
+        public override int Id => PerfumeNoteRelatoinId;
         public int PerfumeDetailsId { get; set; }
         public int NotesId { get; set; }
         public int NotePositoinId { get; set; }

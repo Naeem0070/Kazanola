@@ -3,12 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models
 {
-    public class SliderModel: BaseEntity, IbaseEntity
+    public class SliderModel: BaseEntity    
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SliderModelId { get; set; }
         [NotMapped]
-        public int Id => SliderModelId;
+        public override int Id => SliderModelId;
         [Required]
         [Display(Name = "الصورة")]
         public string? ImageUrl { get; set; }

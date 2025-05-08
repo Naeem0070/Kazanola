@@ -5,12 +5,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models;
 
-public partial class Category: BaseEntity, IbaseEntity
+public partial class Category: BaseEntity
 {
-    
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int CategoryID { get; set; }
     [NotMapped]
-    public int Id => CategoryID;
+    public override int Id => CategoryID;
     [Required]
     [Display(Name = "الصنف")]
     public string? CategoryName { get; set; }

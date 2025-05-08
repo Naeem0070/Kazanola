@@ -5,12 +5,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models;
 
-public partial class EmployeeWithdrawal: BaseEntity, IbaseEntity
+public partial class EmployeeWithdrawal: BaseEntity
 {
-    
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int EmployeeWithdrawalID { get; set; }
     [NotMapped]
-    public int Id => EmployeeWithdrawalID;
+    public override int Id => EmployeeWithdrawalID;
     [Required]
     [Display(Name = "اسم الموظف")]
     public int? EmployeeID { get; set; }

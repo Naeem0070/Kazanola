@@ -3,12 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kazanola.Models
 {
-    public class NotePositoin: BaseEntity, IbaseEntity
+    public class NotePositoin: BaseEntity
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int NotePositoinId { get; set; }
         [NotMapped]
-        public int Id => NotePositoinId;
+        public override int Id => NotePositoinId;
         public string? Name { get; set; }
      
       

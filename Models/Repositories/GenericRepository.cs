@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Kazanola.Models.Repositories
 {
-    public class GenericRepository<T> : IRepository<T> where T : BaseEntity,IbaseEntity
+    public class GenericRepository<T> : IRepository<T> where T : BaseEntity
     {
         private readonly AppDbContext _db;
         private readonly DbSet<T> _dbSet;
@@ -33,42 +33,41 @@ namespace Kazanola.Models.Repositories
 
             _db.Entry(data).CurrentValues.SetValues(entity);
             data.EditDate = DateTime.Now;
+
             _db.SaveChanges();
         }
 
         public void Delete(int id, T entity)
         {
             var data = Find(id);
-            if (data == null) return;
-
             data.IsDelete = !data.IsDelete;
             data.EditDate = DateTime.Now;
+            _dbSet.Update(data);
             _db.SaveChanges();
         }
 
         public void Active(int id)
         {
             var data = Find(id);
-            if (data == null) return;
-
             data.IsActive = !data.IsActive;
             data.EditDate = DateTime.Now;
+            _dbSet.Update(data);
             _db.SaveChanges();
         }
-
+        
         public List<T> View()
         {
-            return _dbSet.Where(x => !x.IsDelete).ToList();
+            return _dbSet.Where(x => x.IsDelete==false).ToList();
         }
 
         public List<T> ViewClient()
         {
-            return _dbSet.Where(x => x.IsActive && !x.IsDelete).ToList();
+            return _dbSet.Where(x => x.IsDelete == false && x.IsActive == true).ToList();
         }
 
         public T Find(int id)
         {
-            return _dbSet.FirstOrDefault(x => x.Id == id);
+            return _dbSet.Find(id);
         }
     }
 }

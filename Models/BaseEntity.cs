@@ -1,9 +1,12 @@
-﻿namespace Kazanola.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Kazanola.Models
 {
         public class BaseEntity
         {
-       
 
+        [NotMapped]
+        public virtual int Id { get; }
         public bool IsActive { get; set; }
             public bool IsDelete { get; set; }
 

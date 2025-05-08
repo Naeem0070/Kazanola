@@ -13,18 +13,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IClassHelper, HelperClass>();
 builder.Services.AddScoped<IUserRepository<Users>, UserRepository>();
-builder.Services.AddScoped<IRepository<BillPayment>,BillPaymentRepository>();
-builder.Services.AddScoped<IRepository<ScheduleBill> ,ScheduleBillRepository>();
-builder.Services.AddScoped<IRepository<Page>,PageRepository>();
-builder.Services.AddScoped<IRepository<Category>, CategoryRepository>();
-builder.Services.AddScoped<IRepository<Brand>, BrandRepository>();
-builder.Services.AddScoped<IRepository<Product>, ProductRepository>();
+
 builder.Services.AddScoped<IOrderRepository<Order>, OrderRepository>();
-builder.Services.AddScoped<IRepository<OrderDetail>, OrderDetailsRepository>();
-builder.Services.AddScoped<IRepository<Employee>, EmployeeRepository>();
-builder.Services.AddScoped<IRepository<EmployeeSchedule>, EmployeeScheduleRepository>();
-builder.Services.AddScoped<IRepository<EmployeeWithdrawal>, EmployeeWithdrawalRepository>();
-builder.Services.AddScoped<IRepository<CampaignPayment>, CampaignPaymentRepository>();
+
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
 

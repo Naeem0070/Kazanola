@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Kazanola.Models.Repositories
 {
-    public class GenericRepository<T> : IRepository<T> where T : BaseEntity
+    public class GenericRepository<T> : IRepository<T> where T : BaseEntity,IbaseEntity
     {
         private readonly AppDbContext _db;
         private readonly DbSet<T> _dbSet;

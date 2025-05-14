@@ -13,6 +13,9 @@ namespace Kazanola.ViewModels
         [Display(Name = "التكلفة")]
         public decimal? ProductCost { get; set; }
         [Required]
+        [Display(Name = "التكلفة بعد التنزيل")]
+        public decimal? ProductCostAfterBay { get; set; }
+        [Required]
         [Display(Name = "سعر البيع")]
         public decimal? ProductPrice { get; set; }
         

@@ -4,6 +4,7 @@ using Kazanola.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kazanola.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250512125641_requird")]
+    partial class requird
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -939,12 +942,6 @@ namespace Kazanola.Migrations
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("OutOfStock")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("PerfumeSizeId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ProductDiscreption")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -953,30 +950,30 @@ namespace Kazanola.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ProductImage1")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductImage2")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductImage3")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductImage4")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductImage5")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductImage6")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProductType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PerfumeDetailsId");
-
-                    b.HasIndex("PerfumeSizeId");
 
                     b.HasIndex("ProductId");
 
@@ -1029,44 +1026,6 @@ namespace Kazanola.Migrations
                     b.ToTable("PerfumeNoteRelatoins");
                 });
 
-            modelBuilder.Entity("Kazanola.Models.PerfumeSize", b =>
-                {
-                    b.Property<int>("PerfumeSizeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PerfumeSizeId"));
-
-                    b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime?>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreateId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("EditDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("EditId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDelete")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Size")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("PerfumeSizeId");
-
-                    b.ToTable("PerfumeSize");
-                });
-
             modelBuilder.Entity("Kazanola.Models.Product", b =>
                 {
                     b.Property<int>("ProductID")
@@ -1078,7 +1037,7 @@ namespace Kazanola.Migrations
                     b.Property<decimal?>("Benefit")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("BillID")
+                    b.Property<int>("BillID")
                         .HasColumnType("int");
 
                     b.Property<int>("BrandId")
@@ -1103,9 +1062,6 @@ namespace Kazanola.Migrations
                         .HasColumnType("bit");
 
                     b.Property<decimal>("ProductCost")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("ProductCostAfterBay")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ProductImageUrl")
@@ -1869,19 +1825,11 @@ namespace Kazanola.Migrations
 
             modelBuilder.Entity("Kazanola.Models.PerfumeDetails", b =>
                 {
-                    b.HasOne("Kazanola.Models.PerfumeSize", "PerfumeSize")
-                        .WithMany()
-                        .HasForeignKey("PerfumeSizeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Kazanola.Models.Product", "product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("PerfumeSize");
 
                     b.Navigation("product");
                 });
@@ -1917,7 +1865,9 @@ namespace Kazanola.Migrations
                 {
                     b.HasOne("Kazanola.Models.ScheduleBill", "Bill")
                         .WithMany()
-                        .HasForeignKey("BillID");
+                        .HasForeignKey("BillID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Kazanola.Models.Brand", "Brands")
                         .WithMany()

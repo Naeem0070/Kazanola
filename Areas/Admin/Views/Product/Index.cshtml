@@ -40,6 +40,13 @@
                                     <span asp-validation-for="ProductCost" class="text-danger"></span>
                                 </div>
                             </div>
+                         <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label asp-for="ProductCostAfterBay" class="col-sm-4 col-form-label bold"></label>
+                                <div class="col-sm-8">
+                                    <input autofocus asp-for="ProductCostAfterBay" class="form-control" />
+                                    <span asp-validation-for="ProductCostAfterBay" class="text-danger"></span>
+                                </div>
+                            </div>
                             <div class="col-md-6 d-flex align-items-center mb-3">
                                 <label asp-for="ProductPrice" class="col-sm-4 col-form-label bold"></label>
                                 <div class="col-sm-8">
@@ -121,6 +128,9 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.ProductCost)
                                 </th>
+                              <th>
+                                    @Html.DisplayNameFor(model => model.ProductCostAfterBay)
+                                </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.ProductPrice)
                                 </th>
@@ -150,6 +160,9 @@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.ProductCost)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ProductCostAfterBay)
                                     </td>
 
                                     <td>

@@ -30,7 +30,7 @@ namespace Kazanola.Areas.Admin.Controllers
             }
             var ViewObj = new ProductDetailsVM
             {
-                ProductDetailsId=EditData.ProductId,
+                ProductDetailsId=EditData.ProductDetailsId,
                 ProductDiscreption=EditData.ProductDiscreption,
                 ProductId = EditData.ProductId,
                 ProductImage1 = EditData.ProductImage1,
@@ -60,7 +60,7 @@ namespace Kazanola.Areas.Admin.Controllers
                     }
                     var ViewObj = new ProductDetailsVM
                     {
-                        ProductDetailsId = EditData.ProductId,
+                        ProductDetailsId = EditData.ProductDetailsId,
                         ProductDiscreption = EditData.ProductDiscreption,
                         ProductId = EditData.ProductId,
                         ProductImage1 = EditData.ProductImage1,
@@ -86,12 +86,12 @@ namespace Kazanola.Areas.Admin.Controllers
                     ProductDetailsId=collection.ProductDetailsId,
                     ProductDiscreption=collection.ProductDiscreption,
                     ProductId=collection.ProductId,
-                    ProductImage1 = ImageUrl1==null?collection.ProductImage1: ImageUrl1,
-                    ProductImage2 = ImageUrl2==null?collection.ProductImage2: ImageUrl2,
-                    ProductImage3 = ImageUrl3==null?collection.ProductImage3: ImageUrl3,
-                    ProductImage4 = ImageUrl4==null?collection.ProductImage4: ImageUrl4,
-                    ProductImage5 = ImageUrl5==null?collection.ProductImage5: ImageUrl5,
-                    ProductImage6 = ImageUrl6==null?collection.ProductImage6: ImageUrl6,
+                    ProductImage1 = string.IsNullOrEmpty(ImageUrl1) ? collection.ProductImage1 : ImageUrl1,
+                    ProductImage2 = string.IsNullOrEmpty(ImageUrl2) ? collection.ProductImage2 : ImageUrl2,
+                    ProductImage3 = string.IsNullOrEmpty(ImageUrl3) ? collection.ProductImage3 : ImageUrl3,
+                    ProductImage4 = string.IsNullOrEmpty(ImageUrl4) ? collection.ProductImage4 : ImageUrl4,
+                    ProductImage5 = string.IsNullOrEmpty(ImageUrl5) ? collection.ProductImage5 : ImageUrl5,
+                    ProductImage6 = string.IsNullOrEmpty(ImageUrl6) ? collection.ProductImage6 : ImageUrl6,
                     CreateId = string.IsNullOrEmpty(collection.CreateId) ? userId : collection.CreateId,
                     EditId = userId,
 

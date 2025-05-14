@@ -3,12 +3,14 @@ using Kazanola.Models;
 using Kazanola.Models.Repositories;
 using Kazanola.MyClass;
 using Kazanola.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 
 namespace Kazanola.Areas.Admin.Controllers
 {
+   
     [Area("Admin")]
 
     public class AccountsController : Controller

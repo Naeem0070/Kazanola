@@ -19,12 +19,15 @@ public partial class Product: BaseEntity
     [Display(Name = "التكلفة")]
     public decimal? ProductCost { get; set; }
     [Required]
+    [Display(Name = "التكلفة بعد التنزيل")]
+    public decimal? ProductCostAfterBay { get; set; }
+    [Required]
     [Display(Name = "سعر البيع")]
     public decimal? ProductPrice { get; set; }
 
     [Display(Name = "صافي الربح")]
     public decimal? Benefit { get; set; }
-    [Required]
+ 
     [Display(Name = "رقم الفتورة")]
     public int? BillID { get; set; }
     [Required]

@@ -1,4 +1,4 @@
-﻿@model Kazanola.ViewModels.ProductDetailsVM
+﻿@model Kazanola.ViewModels.PerfumeDetailsVM
 @{
     ViewData["Title"] = "Index";
 }
@@ -28,13 +28,13 @@
                                 <label asp-for="ProductId" class="control-label"></label>
                                 <div class="col-sm-8">
                                     <select asp-for="ProductId" class="form-select select2"
-                                            asp-items="@(new SelectList(Model.Products, "ProductID", "ProductName"))">
+                                            asp-items="@(new SelectList(Model.ProductsList, "ProductID", "ProductName"))">
                                         <option value="">-- اختر فاتورة --</option>
                                     </select>
                                     <span asp-validation-for="ProductId" class="text-danger"></span>
                                 </div>
                             </div>
-                           
+
                             <div class="col-md-6 d-flex align-items-center mb-3">
                                 <label asp-for="ProductDiscreption" class="control-label"></label>
                                 <div class="col-sm-8">
@@ -42,117 +42,45 @@
                                     <span asp-validation-for="ProductDiscreption" class="text-danger"></span>
                                 </div>
                             </div>
-                           
-                                @if (Model != null && !string.IsNullOrEmpty(Model.ProductImage1))  
+                            
+                            <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label asp-for="ProductType" class="control-label"></label>
+                                <div class="col-sm-8">
+                                    <input autofocus asp-for="ProductType" class="form-control" />
+                                    <span asp-validation-for="ProductType" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            @for (int i = 1; i <= 6; i++)
+                            {
+                                var imageProp = (string?)Model.GetType().GetProperty($"ProductImage{i}")?.GetValue(Model);
+                                var fileProp = $"FileImage{i}";
+
+                                if (!string.IsNullOrEmpty(imageProp))
                                 {
-                                <div class="col-md-6 d-flex align-items-center mb-3">
-                                    <label asp-for="ProductImage1" class="col-sm-4 col-form-label bold"></label>
-                                    <div class="col-sm-8">
-                                        <input type="hidden" autofocus asp-for="ProductImage1" class="form-control" />
-                                        <img src="~/ProductImage/@Model.ProductImage1" style="max-width:50px" />
+                                    <div class="col-md-6 d-flex align-items-center mb-3">
+                                        <label class="col-sm-4 col-form-label bold">الصورة @i</label>
+                                        <div class="col-sm-8">
+                                            <input type="hidden" name="ProductImage@i" value="@imageProp" class="form-control" />
+                                            <img src="~/ProductImage/@imageProp" style="max-width:50px" />
+                                        </div>
                                     </div>
-                                </div>
                                 }
-                            
-                                
-                            
-                            <div class="col-md-6 d-flex align-items-center mb-3">
-                                <label asp-for="FileImage1" class="control-label"></label>
-                                <div class="col-sm-8">
-                                    <input autofocus asp-for="FileImage1" class="form-control" />
-                                    <span asp-validation-for="FileImage1" class="text-danger"></span>
-                                </div>
-                            </div>
-                            @if (!string.IsNullOrEmpty(Model.ProductImage2))
-                            {
+
                                 <div class="col-md-6 d-flex align-items-center mb-3">
-                                    <label asp-for="ProductImage2" class="col-sm-4 col-form-label bold"></label>
+                                    <label class="control-label">الصورة @i (جديدة)</label>
                                     <div class="col-sm-8">
-                                        <input type="hidden" autofocus asp-for="ProductImage2" class="form-control" />
-                                        <img src="~/ProductImage/@Model.ProductImage2" style="max-width:50px" />
+                                        <input asp-for="@Model.GetType().GetProperty(fileProp).Name" class="form-control" />
+                                        <span asp-validation-for="@Model.GetType().GetProperty(fileProp).Name" class="text-danger"></span>
                                     </div>
                                 </div>
                             }
-                            <div class="col-md-6 d-flex align-items-center mb-3">
-                                <label asp-for="FileImage2" class="control-label"></label>
-                                <div class="col-sm-8">
-                                    <input autofocus asp-for="FileImage2" class="form-control" />
-                                    <span asp-validation-for="FileImage2" class="text-danger"></span>
-                                </div>
-                            </div>
-                            @if (!string.IsNullOrEmpty(Model.ProductImage3))
-                            {
-                                <div class="col-md-6 d-flex align-items-center mb-3">
-                                    <label asp-for="ProductImage3" class="col-sm-4 col-form-label bold"></label>
-                                    <div class="col-sm-8">
-                                        <input type="hidden" autofocus asp-for="ProductImage3" class="form-control" />
-                                        <img src="~/ProductImage/@Model.ProductImage3" style="max-width:50px" />
-                                    </div>
-                                </div>
-                            }
-                            <div class="col-md-6 d-flex align-items-center mb-3">
-                                <label asp-for="FileImage3" class="control-label"></label>
-                                <div class="col-sm-8">
-                                    <input autofocus asp-for="FileImage3" class="form-control" />
-                                    <span asp-validation-for="FileImage3" class="text-danger"></span>
-                                </div>
-                            </div>
-                            @if (!string.IsNullOrEmpty(Model.ProductImage4))
-                            {
-                                <div class="col-md-6 d-flex align-items-center mb-3">
-                                    <label asp-for="ProductImage4" class="col-sm-4 col-form-label bold"></label>
-                                    <div class="col-sm-8">
-                                        <input type="hidden" autofocus asp-for="ProductImage4" class="form-control" />
-                                        <img src="~/ProductImage/@Model.ProductImage4" style="max-width:50px" />
-                                    </div>
-                                </div>
-                            }
-                            <div class="col-md-6 d-flex align-items-center mb-3">
-                                <label asp-for="FileImage4" class="control-label"></label>
-                                <div class="col-sm-8">
-                                    <input autofocus asp-for="FileImage4" class="form-control" />
-                                    <span asp-validation-for="FileImage4" class="text-danger"></span>
-                                </div>
-                            </div>
-                            @if (!string.IsNullOrEmpty(Model.ProductImage5))
-                            {
-                                <div class="col-md-6 d-flex align-items-center mb-3">
-                                    <label asp-for="ProductImage5" class="col-sm-4 col-form-label bold"></label>
-                                    <div class="col-sm-8">
-                                        <input type="hidden" autofocus asp-for="ProductImage5" class="form-control" />
-                                        <img src="~/ProductImage/@Model.ProductImage5" style="max-width:50px" />
-                                    </div>
-                                </div>
-                            }
-                            <div class="col-md-6 d-flex align-items-center mb-3">
-                                <label asp-for="FileImage5" class="control-label"></label>
-                                <div class="col-sm-8">
-                                    <input autofocus asp-for="FileImage5" class="form-control" />
-                                    <span asp-validation-for="FileImage5" class="text-danger"></span>
-                                </div>
-                            </div>
-                            @if (!string.IsNullOrEmpty(Model.ProductImage6))
-                            {
-                                <div class="col-md-6 d-flex align-items-center mb-3">
-                                    <label asp-for="ProductImage6" class="col-sm-4 col-form-label bold"></label>
-                                    <div class="col-sm-8">
-                                        <input type="hidden" autofocus asp-for="ProductImage6" class="form-control" />
-                                        <img src="~/ProductImage/@Model.ProductImage6" style="max-width:50px" />
-                                    </div>
-                                </div>
-                            }
-                            <div class="col-md-6 d-flex align-items-center mb-3">
-                                <label asp-for="FileImage6" class="control-label"></label>
-                                <div class="col-sm-8">
-                                    <input autofocus asp-for="FileImage6" class="form-control" />
-                                    <span asp-validation-for="FileImage6" class="text-danger"></span>
-                                </div>
-                            </div>
+
                             <div class="col-md-6 d-flex align-items-center mb-3">
 
                                 <div class="col-sm-8">
-                                    <input type="hidden" autofocus asp-for="ProductDetailsId" class="form-control" />
-                                    <span asp-validation-for="ProductDetailsId" class="text-danger"></span>
+                                    <input type="hidden" autofocus asp-for="PerfumeDetailsId" class="form-control" />
+                                    <span asp-validation-for="PerfumeDetailsId" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="form-group text-end mt-3" style="direction:rtl;">
@@ -187,6 +115,9 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.ProductDiscreption)
                                 </th>
+                            <th>
+                                    @Html.DisplayNameFor(model => model.ProductType)
+                                </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.FileImage1)
                                 </th>
@@ -202,16 +133,19 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.FileImage5)
                                 </th>
-                                 <th>
+                                <th>
                                     @Html.DisplayNameFor(model => model.FileImage6)
+                                </th>
+                                 <th>
+                                    @Html.DisplayNameFor(model => model.OutOfStock)
                                 </th>
 
 
-                                <th></th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model.ProductDetails)
+                            @foreach (var item in Model.PerfumeDetailsList)
                             {
                                 <tr>
                                     <td>
@@ -219,6 +153,9 @@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.ProductDiscreption)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ProductType)
                                     </td>
 
                                     <td>
@@ -239,26 +176,41 @@
                                     <td>
                                         <img src="~/ProductImage/@item.ProductImage6" style="max-width:100px" />
                                     </td>
-
                                     <td>
-                                        <a title="Edit" asp-action="Index" asp-route-EditId="@item.ProductDetailsId" class="btn btn-outline-primary btn-sm rounded-circle">
-                                            <i class="ri-edit-box-fill fs-4"></i>
-                                        </a>
-                                        <a id="myModal" class="btn btn-outline-danger btn-sm rounded-circle btnDelete"
-                                           href="#" data-bs-target="#batatat" data-bs-toggle="modal"
-                                           data-path="@Url.Action("Delete", "ProductDetails", new { id = @item.ProductDetailsId })">
-                                            <i class="ri-delete-bin-4-fill fs-4"></i>
-                                        </a>
                                         @if (item.IsActive)
                                         {
-                                            <a title="IsActive" asp-action="Update_Active" asp-route-id="@item.ProductDetailsId"
+                                            <a title="IsActive" asp-action="OutOfStoke" asp-route-id="@item.PerfumeDetailsId"
                                                class="btn btn-outline-success btn-sm rounded-circle">
                                                 <i class="ri-checkbox-circle-fill fs-4"></i>
                                             </a>
                                         }
                                         else
                                         {
-                                            <a title="IsActive" asp-action="Update_Active" asp-route-id="@item.ProductDetailsId"
+                                            <a title="IsActive" asp-action="OutOfStoke" asp-route-id="@item.PerfumeDetailsId"
+                                               class="btn btn-outline-dark btn-sm rounded-circle">
+                                                <i class="ri-close-circle-fill fs-4"></i>
+                                            </a>
+                                        }
+                                    </td>
+                                    <td>
+                                        <a title="Edit" asp-action="Index" asp-route-EditId="@item.PerfumeDetailsId" class="btn btn-outline-primary btn-sm rounded-circle">
+                                            <i class="ri-edit-box-fill fs-4"></i>
+                                        </a>
+                                        <a id="myModal" class="btn btn-outline-danger btn-sm rounded-circle btnDelete"
+                                           href="#" data-bs-target="#batatat" data-bs-toggle="modal"
+                                           data-path="@Url.Action("Delete", "PerfumeDetails", new { id = @item.PerfumeDetailsId })">
+                                            <i class="ri-delete-bin-4-fill fs-4"></i>
+                                        </a>
+                                        @if (item.IsActive)
+                                        {
+                                            <a title="IsActive" asp-action="Update_Active" asp-route-id="@item.PerfumeDetailsId"
+                                               class="btn btn-outline-success btn-sm rounded-circle">
+                                                <i class="ri-checkbox-circle-fill fs-4"></i>
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a title="IsActive" asp-action="Update_Active" asp-route-id="@item.PerfumeDetailsId"
                                                class="btn btn-outline-dark btn-sm rounded-circle">
                                                 <i class="ri-close-circle-fill fs-4"></i>
                                             </a>

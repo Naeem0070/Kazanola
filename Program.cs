@@ -15,6 +15,7 @@ builder.Services.AddScoped<IClassHelper, HelperClass>();
 builder.Services.AddScoped<IUserRepository<Users>, UserRepository>();
 
 builder.Services.AddScoped<IOrderRepository<Order>, OrderRepository>();
+builder.Services.AddScoped<IPerfumeReposetory<PerfumeDetails>, PerfumeRepository>();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 

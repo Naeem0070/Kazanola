@@ -13,6 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IClassHelper, HelperClass>();
 builder.Services.AddScoped<IUserRepository<Users>, UserRepository>();
+builder.Services.AddScoped<ISaleBanerReposetory<SaleBaner>, SaleBanerRepository>();
 
 builder.Services.AddScoped<IOrderRepository<Order>, OrderRepository>();
 builder.Services.AddScoped<IPerfumeReposetory<PerfumeDetails>, PerfumeRepository>();

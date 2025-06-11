@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Kazanola.Models;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
-namespace Kazanola.Models
+namespace Kazanola.ViewModels
 {
-    public class SaleBaner: BaseEntity
+    public class SaleBanerVM:BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -12,7 +13,7 @@ namespace Kazanola.Models
         public override int Id => SaleBanerId;
 
         [Required]
-        [Display(Name="العنوان")]
+        [Display(Name = "العنوان")]
         public string? Title { get; set; }
         [Required]
         [Display(Name = "الوصف")]
@@ -26,12 +27,14 @@ namespace Kazanola.Models
         [Required]
         [Display(Name = "الوصف2")]
         public string? PromotionalText { get; set; }
-       
+      
         [Display(Name = "الصورة")]
         public string? ImageUrl { get; set; }
+        [Display(Name = "الصورة")]
+        public IFormFile? ImageFile { get; set; }
         [Required]
         [Display(Name = "هل هو فعال")]
         public bool IsFeatured { get; set; }
-
+        public List<SaleBaner>? SaleBanerList { get; set; }
     }
 }

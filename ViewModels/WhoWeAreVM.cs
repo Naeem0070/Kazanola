@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Kazanola.Models;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
-namespace Kazanola.Models
+namespace Kazanola.ViewModels
 {
-    public class WhoWeAreModel:BaseEntity
+    public class WhoWeAreVM:BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -22,6 +23,8 @@ namespace Kazanola.Models
         [Required]
         [Display(Name = "الرابط")]
         public string? ButtonUrl { get; set; }
-        
+        [Display(Name = "الصورة")]
+        public IFormFile? ImageFile { get; set; }
+        public List<WhoWeAreModel>? ListofWe { get; set; }
     }
 }

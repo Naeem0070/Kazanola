@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Kazanola.Models;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Kazanola.Models
+namespace Kazanola.ViewModels
 {
-    public class WhyChooseUsModel: BaseEntity
+    public class WhyChooseUsVM:BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -16,13 +17,20 @@ namespace Kazanola.Models
         [Required]
         [Display(Name = "الوصف")]
         public string? Description { get; set; }
+    
         [Display(Name = "1الصورة")]
         public string? ImageUrl1 { get; set; }
+       
+        [Display(Name = "1الصورة")]
+        public IFormFile? ImageFile1 { get; set; }
         [Display(Name = "الصورة2")]
         public string? ImageUrl2 { get; set; }
+        [Display(Name = "الصورة2")]
+        public IFormFile? ImageFile2 { get; set; }
         [Required]
         [Display(Name = "الرابط")]
         public string? ButtonUrl { get; set; }
 
+        public List<WhyChooseUsModel>? ChooseUsList { get; set; }
     }
 }

@@ -1,16 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Kazanola.Models;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
-namespace Kazanola.Models
+namespace Kazanola.ViewModels
 {
-    public class SystemSetting: BaseEntity
+    public class SystemSettingVM:BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SystemSettingId { get; set; }
         [NotMapped]
         public override int Id => SystemSettingId;
-   
+
         [Display(Name = "Logo")]
         public string? LogoUrl { get; set; }
         [Required]
@@ -25,5 +26,8 @@ namespace Kazanola.Models
         [Required]
         [Display(Name = "رسالة تعريفية في الفووتر")]
         public string? FooterNote { get; set; }
+        [Display(Name = "Logo")]
+        public IFormFile? LogoFile { get; set; }
+        public List<SystemSetting>? ListOfSetting { get; set; }
     }
 }

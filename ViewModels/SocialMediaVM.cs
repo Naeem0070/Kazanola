@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Kazanola.Models;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
-namespace Kazanola.Models
+namespace Kazanola.ViewModels
 {
-    public class SocialMediaModel: BaseEntity
+    public class SocialMediaVM:BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -16,9 +17,13 @@ namespace Kazanola.Models
         [Required]
         [Display(Name = "الرابط")]
         public string? Link { get; set; }
-      
+        
         [Display(Name = "الصورة")]
         public string? ImageUrl { get; set; }
+         
+        [Display(Name = "الصورة")]
+        public IFormFile? ImageFile { get; set; }
+        public List<SocialMediaModel>? ListOfSocial { get; set; }
 
     }
 }

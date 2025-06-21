@@ -13,6 +13,8 @@ namespace Kazanola.Models
         [Required]
         [Display(Name = "اسم البراند")]
         public string? BrandName { get; set; }
+        [Display(Name = "الصورة")]
+        public string? ImageUrl { get; set; }
         public Category? Category { get; set; }
         [Required]
         [Display(Name = "الصنف")]

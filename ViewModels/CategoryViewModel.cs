@@ -10,7 +10,7 @@ namespace Kazanola.ViewModels
         [Display(Name = "الصنف")]
         public string? CategoryName { get; set; }
         [Display(Name = "الصورة")]
-        public int? ImageUrl { get; set; }
+        public String? ImageUrl { get; set; }
         
         [Display(Name ="ملف الصورة")]
         public IFormFile? ImageFile { get; set; }

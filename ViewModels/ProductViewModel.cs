@@ -21,7 +21,7 @@ namespace Kazanola.ViewModels
         
         [Display(Name = "صافي الربح")]
         public decimal? Benefit { get; set; }
-        [Required]
+      
         [Display(Name = "رقم الفتورة")]
         public int? BillID { get; set; }
         [Required]

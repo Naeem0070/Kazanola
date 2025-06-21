@@ -1,8 +1,83 @@
-﻿@{
+﻿@model Kazanola.ViewModels.HomeVM
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!--Home slider-->
+<div class="slideshow slideshow-wrapper pb-section sliderFull">
+    <div class="home-slideshow">
+
+        @foreach(var item in Model.SliderList){
+            <div class="slide">
+                <div class="blur-up lazyload bg-size">
+                    <img class="blur-up lazyload bg-img" data-src="Slider_image/@item.ImageUrl" src="@item.ImageUrl" alt="" title="@item.Title" />
+                    <div class="slideshow__text-wrap slideshow__overlay classic bottom">
+                        <div class="slideshow__text-content bottom">
+                            <div class="wrap-caption center">
+                                <h2 class="h1 mega-title slideshow__title">@item.Title</h2>
+                                <span class="mega-subtitle slideshow__subtitle">@item.Description</span>
+                                <a href="@item.ButtonsLink" class="btn">
+                                <span class="btn">Shop now</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+}
+        @* <div class="slide">
+            <div class="blur-up lazyload bg-size">
+                <img class="blur-up lazyload bg-img" data-src="assets/images/slideshow-banners/belle-banner1.jpg" src="assets/images/slideshow-banners/belle-banner1.jpg" alt="Shop Our New Collection" title="Shop Our New Collection" />
+                <div class="slideshow__text-wrap slideshow__overlay classic bottom">
+                    <div class="slideshow__text-content bottom">
+                        <div class="wrap-caption center">
+                            <h2 class="h1 mega-title slideshow__title">Shop Our New Collection</h2>
+                            <span class="mega-subtitle slideshow__subtitle">From Hight to low, classic or modern. We have you covered</span>
+                            <span class="btn">Shop now</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> *@
+        
+    </div>
 </div>
+<!--End Home slider-->
+<!--Collection Box slider-->
+<div class="collection-box section">
+    <div class="container-fluid">
+        <div class="collection-grid">
+            @foreach (var item in Model.CategoryList)
+            {
+                <div class="collection-grid-item">
+                    <a href="collection-page.html" class="collection-grid-item__link">
+                        <img data-src="Category/@item.ImageUrl" src="~/Category/@item.ImageUrl" width="207.90" height="238.562" alt="Fashion" class="blur-up lazyload" />
+                        <div class="collection-grid-item__title-wrapper">
+                            <h3 class="collection-grid-item__title btn btn--secondary no-border">@item.CategoryName</h3>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+</div>
+</div>
+<!--End Collection Box slider-->
+<!--Logo Slider-->
+<div class="section logo-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="logo-bar">
+                    @foreach (var item in Model.BrandList) { 
+                    <div class="logo-bar__item">
+                            <img src="~/Brand/@item.ImageUrl" alt="" title="@item.BrandName" />
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Logo Slider-->

@@ -30,10 +30,10 @@ namespace Kazanola.Models.Repositories
         {
             var data = Find(id);
             if (data == null) return;
-
+            Boolean isActive = data.IsActive;
             _db.Entry(data).CurrentValues.SetValues(entity);
             data.EditDate = DateTime.Now;
-
+            data.IsActive = isActive;
             _db.SaveChanges();
         }
 

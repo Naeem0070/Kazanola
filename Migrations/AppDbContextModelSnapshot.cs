@@ -197,6 +197,9 @@ namespace Kazanola.Migrations
                     b.Property<string>("EditId")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -280,8 +283,8 @@ namespace Kazanola.Migrations
                     b.Property<string>("EditId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ImageUrl")
-                        .HasColumnType("int");
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -940,9 +943,6 @@ namespace Kazanola.Migrations
                     b.Property<bool>("OutOfStock")
                         .HasColumnType("bit");
 
-                    b.Property<int>("PerfumeSizeId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ProductDiscreption")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -973,8 +973,6 @@ namespace Kazanola.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PerfumeDetailsId");
-
-                    b.HasIndex("PerfumeSizeId");
 
                     b.HasIndex("ProductId");
 
@@ -1025,44 +1023,6 @@ namespace Kazanola.Migrations
                     b.HasIndex("PerfumeDetailsId");
 
                     b.ToTable("PerfumeNoteRelatoins");
-                });
-
-            modelBuilder.Entity("Kazanola.Models.PerfumeSize", b =>
-                {
-                    b.Property<int>("PerfumeSizeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PerfumeSizeId"));
-
-                    b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime?>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreateId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("EditDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("EditId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDelete")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Size")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("PerfumeSizeId");
-
-                    b.ToTable("PerfumeSize");
                 });
 
             modelBuilder.Entity("Kazanola.Models.Product", b =>
@@ -1211,7 +1171,6 @@ namespace Kazanola.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -1313,7 +1272,6 @@ namespace Kazanola.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -1352,7 +1310,6 @@ namespace Kazanola.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -1413,7 +1370,6 @@ namespace Kazanola.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LogoUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhomeNumber")
@@ -1568,7 +1524,6 @@ namespace Kazanola.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -1615,7 +1570,6 @@ namespace Kazanola.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl1")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl2")
@@ -1867,19 +1821,11 @@ namespace Kazanola.Migrations
 
             modelBuilder.Entity("Kazanola.Models.PerfumeDetails", b =>
                 {
-                    b.HasOne("Kazanola.Models.PerfumeSize", "PerfumeSize")
-                        .WithMany()
-                        .HasForeignKey("PerfumeSizeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Kazanola.Models.Product", "product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("PerfumeSize");
 
                     b.Navigation("product");
                 });

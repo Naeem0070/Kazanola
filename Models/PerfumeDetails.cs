@@ -21,8 +21,7 @@ namespace Kazanola.Models
         [Display(Name = "النوع")]
         public string? ProductType { get; set; }
 
-        [Display(Name = "الحجم")]
-        public int PerfumeSizeId { get; set; }
+        
        
         [Display(Name = "نفذت الكمية")]
         public bool OutOfStock { get; set; }
@@ -47,6 +46,6 @@ namespace Kazanola.Models
         public string? ProductImage6 { get; set; }
         
         public Product? product { get; set; }
-        public PerfumeSize? PerfumeSize { get; set; }
+        
     }
 }

@@ -16,6 +16,6 @@ public  class Category: BaseEntity
     [Display(Name = "الصنف")]
     public string? CategoryName { get; set; }
     [Display(Name = "الصورة")]
-    public int? ImageUrl { get; set; }
+    public String? ImageUrl { get; set; }
 
 }

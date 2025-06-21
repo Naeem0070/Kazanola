@@ -15,11 +15,11 @@ namespace Kazanola.Areas.Admin.Controllers
     {
         public IPerfumeReposetory<PerfumeDetails> perfume{ get; set; }
         public IRepository<Product> product { get; set; }
-        public IRepository<PerfumeSize> size { get; set; }
+
         public IClassHelper helper { get; set; }
         public PerfumeDetailsController(IRepository<PerfumeSize> size, IRepository<Product> product, IPerfumeReposetory<PerfumeDetails> perfume, IClassHelper helper)
         {
-            this.size = size;
+          
             this.product = product;
             this.perfume = perfume;
             this.helper = helper;
@@ -37,7 +37,7 @@ namespace Kazanola.Areas.Admin.Controllers
                 ProductId = EditData.ProductId,
                 ProductDiscreption = EditData.ProductDiscreption,
                 ProductType = EditData.ProductType,
-                PerfumeSizeId = EditData.PerfumeSizeId,
+         
 
                 ProductImage1 = EditData.ProductImage1,
                 ProductImage2 = EditData.ProductImage2,
@@ -45,7 +45,7 @@ namespace Kazanola.Areas.Admin.Controllers
                 ProductImage4 = EditData.ProductImage4,
                 ProductImage5 = EditData.ProductImage5,
                 ProductImage6 = EditData.ProductImage6,
-                PerfumeSizesList = size.View(),
+            
                 ProductsList = product.View(),
                 PerfumeDetailsList = perfume.View(),
             };
@@ -62,36 +62,26 @@ namespace Kazanola.Areas.Admin.Controllers
                 return View(PrepareViewModel(EditId));
             }
 
-            var images = new string?[6];
-            var files = new IFormFile?[] {
-        collection.FileImage1, collection.FileImage2, collection.FileImage3,
-        collection.FileImage4, collection.FileImage5, collection.FileImage6
-    };
-            var currentImages = new string?[] {
-        collection.ProductImage1, collection.ProductImage2, collection.ProductImage3,
-        collection.ProductImage4, collection.ProductImage5, collection.ProductImage6
-    };
-
-            for (int i = 0; i < 6; i++)
-            {
-                string? uploadedImage = helper.SaveImage(files[i], "PerfumeImage");
-                images[i] = string.IsNullOrEmpty(uploadedImage) ? currentImages[i] : uploadedImage;
-            }
-
+            string ImageUrl1 = helper.SaveImage(collection.FileImage1, "ProductImage");
+            string ImageUrl2 = helper.SaveImage(collection.FileImage2, "ProductImage");
+            string ImageUrl3 = helper.SaveImage(collection.FileImage3, "ProductImage");
+            string ImageUrl4 = helper.SaveImage(collection.FileImage4, "ProductImage");
+            string ImageUrl5 = helper.SaveImage(collection.FileImage5, "ProductImage");
+            string ImageUrl6 = helper.SaveImage(collection.FileImage6, "ProductImage");
             var newData = new PerfumeDetails
             {
                 PerfumeDetailsId = collection.PerfumeDetailsId,
                 ProductId = collection.ProductId,
                 ProductDiscreption = collection.ProductDiscreption,
                 ProductType = collection.ProductType,
-                PerfumeSizeId = collection.PerfumeSizeId,
+      
                 OutOfStock = collection.OutOfStock,
-                ProductImage1 = images[0],
-                ProductImage2 = images[1],
-                ProductImage3 = images[2],
-                ProductImage4 = images[3],
-                ProductImage5 = images[4],
-                ProductImage6 = images[5],
+                ProductImage1 = string.IsNullOrEmpty(ImageUrl1) ? collection.ProductImage1 : ImageUrl1,
+                ProductImage2 = string.IsNullOrEmpty(ImageUrl2) ? collection.ProductImage2 : ImageUrl2,
+                ProductImage3 = string.IsNullOrEmpty(ImageUrl3) ? collection.ProductImage3 : ImageUrl3,
+                ProductImage4 = string.IsNullOrEmpty(ImageUrl4) ? collection.ProductImage4 : ImageUrl4,
+                ProductImage5 = string.IsNullOrEmpty(ImageUrl5) ? collection.ProductImage5 : ImageUrl5,
+                ProductImage6 = string.IsNullOrEmpty(ImageUrl6) ? collection.ProductImage6 : ImageUrl6,
                 CreateId = string.IsNullOrEmpty(collection.CreateId) ? userId : collection.CreateId,
                 EditId = userId
             };
@@ -113,7 +103,7 @@ namespace Kazanola.Areas.Admin.Controllers
                 ProductId = data.ProductId,
                 ProductDiscreption = data.ProductDiscreption,
                 ProductType = data.ProductType,
-                PerfumeSizeId = data.PerfumeSizeId,
+           
                 OutOfStock = data.OutOfStock,
                 ProductImage1 = data.ProductImage1,
                 ProductImage2 = data.ProductImage2,
@@ -121,7 +111,7 @@ namespace Kazanola.Areas.Admin.Controllers
                 ProductImage4 = data.ProductImage4,
                 ProductImage5 = data.ProductImage5,
                 ProductImage6 = data.ProductImage6,
-                PerfumeSizesList = size.View(),
+            
                 ProductsList = product.View(),
                 PerfumeDetailsList = perfume.View()
             };
@@ -148,6 +138,7 @@ namespace Kazanola.Areas.Admin.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
         public ActionResult Update_OutOfStock(int id)
         {
 

@@ -43,7 +43,7 @@ namespace Kazanola.Models.Repositories
         public PerfumeDetails Find(int Id)
         {
             return db.Perfumes
-                .Include(x => x.PerfumeSize)
+               
                 .Include(x => x.product)
                 .SingleOrDefault(x => x.PerfumeDetailsId == Id);
         }
@@ -71,7 +71,7 @@ namespace Kazanola.Models.Repositories
         public List<PerfumeDetails> View()
         {
             return db.Perfumes
-                .Include(x => x.PerfumeSize)
+               
                 .Include(x => x.product)
                 .Where(x => x.IsDelete == false)
                 .ToList();
@@ -80,7 +80,7 @@ namespace Kazanola.Models.Repositories
         public List<PerfumeDetails> ViewClient()
         {
            return db.Perfumes
-                .Include(x => x.PerfumeSize)
+         
                 .Include(x => x.product)
                 .Where(x => x.IsDelete == false && x.IsActive == true )
                 .ToList();

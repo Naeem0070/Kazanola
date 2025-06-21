@@ -1,4 +1,5 @@
-﻿using Kazanola.Models;
+﻿using Kazanola.Areas.Admin.MyClass;
+using Kazanola.Models;
 using Kazanola.Models.Repositories;
 using Kazanola.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -13,10 +14,12 @@ namespace Kazanola.Areas.Admin.Controllers
     {
         public IRepository<Brand> brand { get; set; }
         public IRepository<Category> category { get; set; }
-        public BrandController(IRepository<Brand> brand, IRepository<Category> category)
+        public IClassHelper helper { get; set; }
+        public BrandController(IRepository<Brand> brand, IRepository<Category> category, IClassHelper helper)
         {
             this.brand = brand;
             this.category = category;
+            this.helper = helper;
         }
         public IActionResult Index(int EditId)
         {
@@ -30,6 +33,7 @@ namespace Kazanola.Areas.Admin.Controllers
                 BrandId = EditData.BrandId,
                 CategoryId = EditData.CategoryId,
                 BrandName=EditData.BrandName,
+                ImageUrl= EditData.ImageUrl,
                 BrandList = brand.View(),
                 CategoryList = category.View(),
             };
@@ -44,6 +48,7 @@ namespace Kazanola.Areas.Admin.Controllers
             try
             {
                 string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                string file = helper.SaveImage(collection.ImageFile, "Brand");
                 if (!ModelState.IsValid)
                 {
                     ModelState.AddModelError("", "Please fill all the required fields");
@@ -57,6 +62,7 @@ namespace Kazanola.Areas.Admin.Controllers
                         BrandId = EditData.BrandId,
                         CategoryId = EditData.CategoryId,
                         BrandName = EditData.BrandName,
+                        ImageUrl = EditData.ImageUrl,
                         BrandList = brand.View(),
                         CategoryList = category.View(),
                     };
@@ -68,7 +74,8 @@ namespace Kazanola.Areas.Admin.Controllers
                     EditId = userId,
                     BrandId = collection.BrandId,
                     BrandName = collection.BrandName,
-                    CategoryId= collection.CategoryId
+                    ImageUrl = string.IsNullOrEmpty(file) ? collection.ImageUrl : file,
+                    CategoryId = collection.CategoryId
 
                 };
                 if (collection.BrandId == 0)

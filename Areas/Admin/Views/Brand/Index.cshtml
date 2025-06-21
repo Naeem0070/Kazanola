@@ -41,7 +41,26 @@
                                     <span asp-validation-for="BrandName" class="text-danger"></span>
                                 </div>
                             </div>
+                            @if (Model != null && !string.IsNullOrEmpty(Model.ImageUrl))
+                            {
+                                <div class="col-md-6 d-flex align-items-center mb-3">
+                                    <label asp-for="ImageUrl" class="col-sm-4 col-form-label bold"></label>
+                                    <div class="col-sm-8">
+                                        <input type="hidden" autofocus asp-for="ImageUrl" class="form-control" />
+                                        <img src="~/Brand/@Model.ImageUrl" style="max-width:50px" />
+                                    </div>
+                                </div>
+                            }
 
+
+
+                            <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label asp-for="ImageFile" class="control-label"></label>
+                                <div class="col-sm-8">
+                                    <input autofocus asp-for="ImageFile" class="form-control" />
+                                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+                                </div>
+                            </div>
                            
                             <div class="col-md-6 d-flex align-items-center mb-3">
 
@@ -82,6 +101,10 @@
                                     @Html.DisplayNameFor(model => model.BrandName)
                                 </th>
                                
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ImageUrl)
+                                </th>
+                               
 
                                 <th></th>
                             </tr>
@@ -95,6 +118,9 @@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.BrandName)
+                                    </td>
+                                    <td>
+                                        <img src="~/Brand/@item.ImageUrl" style="max-width:100px" />
                                     </td>
 
                                     

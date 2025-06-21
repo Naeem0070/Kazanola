@@ -1,4 +1,5 @@
-﻿using Kazanola.Models;
+﻿using Kazanola.Areas.Admin.MyClass;
+using Kazanola.Models;
 using Kazanola.Models.Repositories;
 using Kazanola.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -12,9 +13,11 @@ namespace Kazanola.Areas.Admin.Controllers
     public class CategoryController : Controller
     {
         public IRepository<Category> category { get; set; }
-        public CategoryController(IRepository<Category> category)
+        public IClassHelper helper { get; set; }
+        public CategoryController(IRepository<Category> category, IClassHelper helper)
         {
             this.category = category;
+            this.helper = helper;
         }
         public IActionResult Index(int EditId)
         {
@@ -27,6 +30,7 @@ namespace Kazanola.Areas.Admin.Controllers
             {
                 CategoryID = EditData.CategoryID,
                 CategoryName = EditData.CategoryName,
+                ImageUrl=EditData.ImageUrl,
                 CategoryList = category.View(),
             };
             return View(ViewObj);
@@ -38,6 +42,7 @@ namespace Kazanola.Areas.Admin.Controllers
             try
             {
                 string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                
                 if (!ModelState.IsValid)
                 {
                     ModelState.AddModelError("", "Please fill all the required fields");
@@ -50,16 +55,19 @@ namespace Kazanola.Areas.Admin.Controllers
                     {
                         CategoryID = EditData.CategoryID,
                         CategoryName = EditData.CategoryName,
+                        ImageUrl = EditData.ImageUrl,
                         CategoryList = category.View(),
                     };
                     return View(ViewObj);
                 }
+                string file = helper.SaveImage(collection.ImageFile, "Category");
                 var data = new Category
                 {
                     CreateId = string.IsNullOrEmpty(collection.CreateId) ? userId : collection.CreateId,
                     EditId = userId,
                     CategoryID = collection.CategoryID,
                     CategoryName = collection.CategoryName,
+                    ImageUrl = string.IsNullOrEmpty(file) ? collection.ImageUrl :file
                 };
                 if (collection.CategoryID == 0)
                 {

@@ -51,7 +51,7 @@
                                 </div>
                             </div>
 
-                            @for (int i = 1; i <= 6; i++)
+                          @*   @for (int i = 1; i <= 6; i++)
                             {
                                 var imageProp = (string?)Model.GetType().GetProperty($"ProductImage{i}")?.GetValue(Model);
                                 var fileProp = $"FileImage{i}";
@@ -74,7 +74,112 @@
                                         <span asp-validation-for="@Model.GetType().GetProperty(fileProp).Name" class="text-danger"></span>
                                     </div>
                                 </div>
+                            } *@
+                            @if (Model != null && !string.IsNullOrEmpty(Model.ProductImage1))
+                            {
+                                <div class="col-md-6 d-flex align-items-center mb-3">
+                                    <label asp-for="ProductImage1" class="col-sm-4 col-form-label bold"></label>
+                                    <div class="col-sm-8">
+                                        <input type="hidden" autofocus asp-for="ProductImage1" class="form-control" />
+                                        <img src="~/ProductImage/@Model.ProductImage1" style="max-width:50px" />
+                                    </div>
+                                </div>
                             }
+
+
+
+                            <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label asp-for="FileImage1" class="control-label"></label>
+                                <div class="col-sm-8">
+                                    <input autofocus asp-for="FileImage1" class="form-control" />
+                                    <span asp-validation-for="FileImage1" class="text-danger"></span>
+                                </div>
+                            </div>
+                            @if (!string.IsNullOrEmpty(Model.ProductImage2))
+                            {
+                                <div class="col-md-6 d-flex align-items-center mb-3">
+                                    <label asp-for="ProductImage2" class="col-sm-4 col-form-label bold"></label>
+                                    <div class="col-sm-8">
+                                        <input type="hidden" autofocus asp-for="ProductImage2" class="form-control" />
+                                        <img src="~/ProductImage/@Model.ProductImage2" style="max-width:50px" />
+                                    </div>
+                                </div>
+                            }
+                            <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label asp-for="FileImage2" class="control-label"></label>
+                                <div class="col-sm-8">
+                                    <input autofocus asp-for="FileImage2" class="form-control" />
+                                    <span asp-validation-for="FileImage2" class="text-danger"></span>
+                                </div>
+                            </div>
+                            @if (!string.IsNullOrEmpty(Model.ProductImage3))
+                            {
+                                <div class="col-md-6 d-flex align-items-center mb-3">
+                                    <label asp-for="ProductImage3" class="col-sm-4 col-form-label bold"></label>
+                                    <div class="col-sm-8">
+                                        <input type="hidden" autofocus asp-for="ProductImage3" class="form-control" />
+                                        <img src="~/ProductImage/@Model.ProductImage3" style="max-width:50px" />
+                                    </div>
+                                </div>
+                            }
+                            <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label asp-for="FileImage3" class="control-label"></label>
+                                <div class="col-sm-8">
+                                    <input autofocus asp-for="FileImage3" class="form-control" />
+                                    <span asp-validation-for="FileImage3" class="text-danger"></span>
+                                </div>
+                            </div>
+                            @if (!string.IsNullOrEmpty(Model.ProductImage4))
+                            {
+                                <div class="col-md-6 d-flex align-items-center mb-3">
+                                    <label asp-for="ProductImage4" class="col-sm-4 col-form-label bold"></label>
+                                    <div class="col-sm-8">
+                                        <input type="hidden" autofocus asp-for="ProductImage4" class="form-control" />
+                                        <img src="~/ProductImage/@Model.ProductImage4" style="max-width:50px" />
+                                    </div>
+                                </div>
+                            }
+                            <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label asp-for="FileImage4" class="control-label"></label>
+                                <div class="col-sm-8">
+                                    <input autofocus asp-for="FileImage4" class="form-control" />
+                                    <span asp-validation-for="FileImage4" class="text-danger"></span>
+                                </div>
+                            </div>
+                            @if (!string.IsNullOrEmpty(Model.ProductImage5))
+                            {
+                                <div class="col-md-6 d-flex align-items-center mb-3">
+                                    <label asp-for="ProductImage5" class="col-sm-4 col-form-label bold"></label>
+                                    <div class="col-sm-8">
+                                        <input type="hidden" autofocus asp-for="ProductImage5" class="form-control" />
+                                        <img src="~/ProductImage/@Model.ProductImage5" style="max-width:50px" />
+                                    </div>
+                                </div>
+                            }
+                            <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label asp-for="FileImage5" class="control-label"></label>
+                                <div class="col-sm-8">
+                                    <input autofocus asp-for="FileImage5" class="form-control" />
+                                    <span asp-validation-for="FileImage5" class="text-danger"></span>
+                                </div>
+                            </div>
+                            @if (!string.IsNullOrEmpty(Model.ProductImage6))
+                            {
+                                <div class="col-md-6 d-flex align-items-center mb-3">
+                                    <label asp-for="ProductImage6" class="col-sm-4 col-form-label bold"></label>
+                                    <div class="col-sm-8">
+                                        <input type="hidden" autofocus asp-for="ProductImage6" class="form-control" />
+                                        <img src="~/ProductImage/@Model.ProductImage6" style="max-width:50px" />
+                                    </div>
+                                </div>
+                            }
+                            <div class="col-md-6 d-flex align-items-center mb-3">
+                                <label asp-for="FileImage6" class="control-label"></label>
+                                <div class="col-sm-8">
+                                    <input autofocus asp-for="FileImage6" class="form-control" />
+                                    <span asp-validation-for="FileImage6" class="text-danger"></span>
+                                </div>
+                            </div>
 
                             <div class="col-md-6 d-flex align-items-center mb-3">
 
@@ -177,16 +282,16 @@
                                         <img src="~/ProductImage/@item.ProductImage6" style="max-width:100px" />
                                     </td>
                                     <td>
-                                        @if (item.IsActive)
+                                        @if (item.OutOfStock)
                                         {
-                                            <a title="IsActive" asp-action="OutOfStoke" asp-route-id="@item.PerfumeDetailsId"
+                                            <a title="OutOfStock" asp-action="Update_OutOfStock" asp-route-id="@item.PerfumeDetailsId"
                                                class="btn btn-outline-success btn-sm rounded-circle">
                                                 <i class="ri-checkbox-circle-fill fs-4"></i>
                                             </a>
                                         }
                                         else
                                         {
-                                            <a title="IsActive" asp-action="OutOfStoke" asp-route-id="@item.PerfumeDetailsId"
+                                            <a title="OutOfStock" asp-action="Update_OutOfStock" asp-route-id="@item.PerfumeDetailsId"
                                                class="btn btn-outline-dark btn-sm rounded-circle">
                                                 <i class="ri-close-circle-fill fs-4"></i>
                                             </a>

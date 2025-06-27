@@ -141,6 +141,7 @@ namespace Kazanola.Areas.Admin.Controllers
                     var result = await UserManager.CreateAsync(user, collection.PassWord);
                     if (result.Succeeded)
                     {
+                        await UserManager.AddToRoleAsync(user, "Admin");
                         await SignInManager.SignInAsync(user, isPersistent: false);
                         return RedirectToAction(nameof(Index));
                     }

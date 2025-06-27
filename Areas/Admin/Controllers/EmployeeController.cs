@@ -7,7 +7,7 @@ using System.Security.Claims;
 
 namespace Kazanola.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize (Roles = "Admin")]
     [Area("Admin")]
     public class EmployeeController : Controller
     {

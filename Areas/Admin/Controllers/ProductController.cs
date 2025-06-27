@@ -5,6 +5,7 @@ using Kazanola.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace Kazanola.Areas.Admin.Controllers
@@ -17,13 +18,16 @@ namespace Kazanola.Areas.Admin.Controllers
         public IRepository<Brand> brand { get; set; }
         public IRepository<ScheduleBill> bill { get; set; }
         public IClassHelper HelperClass { get; }
+        private readonly AppDbContext _context;
         public ProductController(IRepository<Product> product, IRepository<Brand> brand,
-            IRepository<ScheduleBill> bill, IClassHelper HelperClass)
+            IRepository<ScheduleBill> bill, IClassHelper HelperClass, AppDbContext context)
         {
             this.product = product;
             this.brand = brand;
             this.bill = bill;
             this.HelperClass = HelperClass;
+            _context = context;
+
         }
         public IActionResult Index(int EditId)
         {
@@ -43,7 +47,8 @@ namespace Kazanola.Areas.Admin.Controllers
                 BrandId = EditData.BrandId,
                 ProductImageUrl = EditData.ProductImageUrl,
                 ProductCostAfterBay= EditData.ProductCostAfterBay,
-                ProductList=product.View(),
+                ClickCount= EditData.ClickCount,
+                ProductList =product.View(),
                 BrandList=brand.View(),
                 ScheduleBillList=bill.View(),
             };
@@ -77,6 +82,7 @@ namespace Kazanola.Areas.Admin.Controllers
                         BrandId = EditData.BrandId,
                         ProductImageUrl = EditData.ProductImageUrl,
                         ProductCostAfterBay= EditData.ProductCostAfterBay,
+                        ClickCount = EditData.ClickCount,
                         ProductList = product.View(),
                         BrandList = brand.View(),
                         ScheduleBillList = bill.View(),
@@ -137,5 +143,17 @@ namespace Kazanola.Areas.Admin.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        [HttpPost]
+        public IActionResult IncreaseClickCount(int id)
+        {
+            var product = _context.Products.FirstOrDefault(p => p.ProductID == id);
+            if (product != null)
+            {
+                product.ClickCount++;
+                _context.SaveChanges();
+            }
+            return Ok(); 
+        }
+
     }
 }

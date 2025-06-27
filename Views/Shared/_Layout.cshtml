@@ -869,6 +869,12 @@
         </script>
         <!--End For Newsletter Popup-->
     </div>
+    <script>
+        function increaseClick(productId) {
+            $.post('/Product/IncreaseClickCount', { id: productId });
+        }
+    </script>
+
 </body>
 
 <!-- belle/index.html   11 Nov 2019 12:20:55 GMT -->

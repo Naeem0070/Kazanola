@@ -30,6 +30,8 @@ namespace Kazanola.ViewModels
        
         [Display(Name = "الصورة")]
         public string? ProductImageUrl { get; set; }
+        [Display(Name = "عدد المشاهدات")]
+        public int ClickCount { get; set; } = 0;
 
         public virtual ScheduleBill? Bill { get; set; }
 
